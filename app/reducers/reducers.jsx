@@ -34,16 +34,23 @@ export var todosReducer  = (state =[],action) => {
 
         return state.map((todo) => {
             var obj = Object.assign({},todo);
+            var upObj= Object.assign({},action.updates);
+            for(var i in upObj){
+                obj[i]=upObj[i]
+              }
           if (todo.id === action.id){
-            var nextCompleted = !todo.completed;
-              obj.completed = nextCompleted;
-              obj.completedAt = nextCompleted ? moment().unix() : undefined
-            // return {
-            //   ...todo,
-            //   completed: nextCompleted,
-            //   completedAt: nextCompleted ? moment().unix() : undefined
-            // };
-            return obj;
+            return {
+              obj
+            }
+          //   var nextCompleted = !todo.completed;
+          //     obj.completed = nextCompleted;
+          //     obj.completedAt = nextCompleted ? moment().unix() : undefined
+          //   // return {
+          //   //   ...todo,
+          //   //   completed: nextCompleted,
+          //   //   completedAt: nextCompleted ? moment().unix() : undefined
+          //   // };
+          //   return obj;
           }else{
             return todo;
           }
